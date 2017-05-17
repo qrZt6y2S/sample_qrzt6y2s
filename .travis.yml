@@ -18,4 +18,15 @@ install: pip install -U tox
 # command to run tests, e.g. python setup.py test
 script: tox -e ${TOXENV}
 
-
+# After you create the Github repo and add it to Travis, run the
+# travis_pypi_setup.py script to finish PyPI deployment setup
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: qrZt6y2S
+  password:
+    secure: PLEASE_REPLACE_ME
+  on:
+    tags: true
+    repo: qrZt6y2S/sample_qrzt6y2s
+    condition: $TOXENV == py27
